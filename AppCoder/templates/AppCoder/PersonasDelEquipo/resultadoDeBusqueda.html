@@ -1,0 +1,44 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<h1>Resultado de la busqueda de personas del equipo por nombre</h1>
+<h3>Busqueda: {{nombre_view}}</h3>
+<br />
+
+{% if nom_res %}
+<h3>Persona del equipo encontrada !</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre de la Persona</th>
+      <th scope="col">Apellido de la Persona</th>
+      <th scope="col">Edad de la persona</th>
+    </tr>
+  </thead>
+  <tbody>
+    <h4>Persona del equipo: {%for pde in nom_res%}</h4>
+
+    <tr>
+      <th scope="row">{{ pde.id }}</th>
+      <td>{{ pde.nombre }}</td>
+      <td>{{ pde.apellido }}</td>
+      <td>{{ pde.edad }}</td>
+    </tr>
+    <br />
+    {% endfor %}
+    </tbody>
+</table>
+ {% else %}
+    <h3>No existe una persona con el nombre buscado!</h3>
+    {% endif %}
+  </tbody>
+  
+</table>
+
+<button
+  type="button"
+  onclick="location.href='/personasdelequipo/busquedanombrepde'"
+  class="btn btn-secondary m-1"
+>
+  Regresar
+</button>
+{% endblock %}

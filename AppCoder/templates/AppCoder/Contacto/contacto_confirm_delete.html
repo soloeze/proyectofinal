@@ -1,0 +1,17 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<h1>Eliminar Contacto</h1>
+<form action="" method="post">
+  <div class="mb-3">
+    {% csrf_token %}
+    <h3>¿Estas seguro que desas borar el contacto de "{{ object.nombre }}"?</h3>
+  </div>
+   <button
+      onclick="location.href='/contacto/list'"  class="btn btn-secondary ms-1 me-1" type="button">
+      Cancelar
+</button>
+    <input type="submit" value="Eliminar" class="btn btn-danger" />
+  
+</div>
+</form>
+
+ {% endblock %}

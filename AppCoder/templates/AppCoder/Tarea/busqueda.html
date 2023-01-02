@@ -1,0 +1,32 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<div class="m-1">
+  <h1>Buscar tarea por nombre</h1>
+  <form action="/tarea/buscar/" method="get">
+    <div class="mb-3">
+      {% csrf_token %}
+      <table>
+        <label class="col-form-label">Nombre de la tarea a buscar:</label>
+
+        <input
+          type="text"
+          name="nombreBuscado"
+          placeholder="Nombre de la tarea"
+          class="ms-1 me-1"
+        />
+      </table>
+    </div>
+
+    <!-- <button type="submit">Agregar</button> -->
+    <div class="d-flex">
+      <button
+        onclick="location.href='/tarea/list'"
+        class="btn btn-secondary ms-1 me-1"
+        type="button"
+      >
+        Cancelar
+      </button>
+      <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+  </form>
+</div>
+{% endblock %}

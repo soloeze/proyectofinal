@@ -1,0 +1,77 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<div class="m-5">
+  <!-- justify-content: space-between -->
+  <div style="display: flex">
+    <a class="btn btn-success ms-1 me-1" href="{% url 'crear_contacto' %}"
+      >Formulario de Contacto</a
+    >
+    <!-- Parte nueva -->
+    <form action="/contacto/buscar/" method="get" >
+      <div class="input-group">
+        {% csrf_token %}
+        <input
+          type="search"
+          name="nombreBuscado"
+          class="form-control"
+          placeholder="Buscar contacto..."
+          aria-label="Search"
+          style="width: 165px"
+        />
+        <button type="submit" class="btn btn-primary" style="width: 26px">
+          <i class="bi bi-search" style="margin-left: -8px"></i>
+        </button>
+      </div>
+    </form>
+    </div>
+    <h1>Listado de los contactos:</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre del Contacto</th>
+          <th scope="col">Tipo de consulta</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in object_list %}
+        <tr>
+          <th scope="row">{{ t.id }}</th>
+          <td>{{ t.nombre }}</td>
+
+          {% if t.tipo_consulta == 0 %}
+          <td>Consulta</td>
+          {% elif t.tipo_consulta == 1 %}
+          <td>Reclamo</td>
+          {% elif t.tipo_consulta == 2 %}
+          <td>Sugerencia</td>
+          {% elif t.tipo_consulta == 3 %}
+          <td>Felicitaciones</td>
+          {% else %}
+          <td>No existe</td>
+          {% endif %}
+          <td>
+            <a
+              href="{% url 'detalle_contacto' t.id %}"
+              class="btn btn-info btn-sm"
+              >Ver</a
+            >
+            <a
+              href="{% url 'editar_contacto' t.id %}"
+              class="btn btn-warning btn-sm"
+              >Modificar</a
+            >
+            <a
+              href="{% url 'eliminar_contacto' t.id %}"
+              class="btn btn-danger btn-sm"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% endblock %}
+</div>

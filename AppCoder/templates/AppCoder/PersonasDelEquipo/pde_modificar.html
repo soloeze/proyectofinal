@@ -1,0 +1,25 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<div class="m-1">
+  <h1>Modificar Persona del Equipo</h1>
+  <form action="" method="post">
+    <div class="mb-3">
+      {% csrf_token %}
+      <table>
+        {{ form }}
+      </table>
+    </div>
+
+    <div class="d-flex">
+      <button
+        onclick="location.href='/personasdelequipo/list'"
+        class="btn btn-secondary ms-1 me-1"
+        type="button"
+      >
+        Cancelar
+      </button>
+
+      <input type="submit" value="Modificar" class="btn btn-warning" />
+    </div>
+  </form>
+</div>
+{% endblock %}

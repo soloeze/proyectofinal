@@ -1,0 +1,22 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<h1>Detalle de la Persona del Equipo:</h1>
+<ul class="list-group">
+  <li class="list-group-item"><b>Nombre:</b> {{personas_del_equipo.nombre}}</li>
+  <li class="list-group-item">
+    <b>Apellido:</b> {{personas_del_equipo.apellido}}
+  </li>
+  <li class="list-group-item">
+    <b>Edad:</b>
+    {{personas_del_equipo.edad}}
+  </li>
+</ul>
+
+<button
+  type="button"
+  onclick="location.href='/personasdelequipo/list'"
+  class="btn btn-secondary m-1"
+>
+  Regresar
+</button>
+
+{% endblock %}

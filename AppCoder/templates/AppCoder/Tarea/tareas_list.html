@@ -1,0 +1,63 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<div class="m-5">
+  <!-- justify-content: space-between -->
+  <div style="display: flex">
+    <a class="btn btn-success ms-1 me-1" href="{% url 'crear_tarea' %}"
+      >Nueva tarea</a
+    >
+    <!-- <div style="display: inline-flex"> -->
+    <!-- Parte nueva -->
+    <form action="/tarea/buscar/" method="get">
+      <div class="input-group">
+        {% csrf_token %}
+        <input
+          type="search"
+          name="nombreBuscado"
+          class="form-control"
+          placeholder="Buscar tarea..."
+          aria-label="Search"
+          style="width: 150px"
+        />
+        <button type="submit" class="btn btn-primary" style="width: 26px">
+          <i class="bi bi-search" style="margin-left: -8px"></i>
+        </button>
+      </div>
+    </form>
+    <!-- </div> -->
+  </div>
+  <h1>Listado de las tareas:</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre del Tarea</th>
+        <th scope="col">Fecha de creacion de la Tarea</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in object_list %}
+      <tr>
+        <th scope="row">{{ t.id }}</th>
+        <td>{{ t.nombre }}</td>
+        <td>{{ t.fecha_de_creacion }}</td>
+        <td>
+          <a href="{% url 'detalle_tarea' t.id %}" class="btn btn-info btn-sm"
+            >Ver</a
+          >
+          <a href="{% url 'editar_tarea' t.id %}" class="btn btn-warning btn-sm"
+            >Modificar</a
+          >
+          <a
+            href="{% url 'eliminar_tarea' t.id %}"
+            class="btn btn-danger btn-sm"
+            >Eliminar</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

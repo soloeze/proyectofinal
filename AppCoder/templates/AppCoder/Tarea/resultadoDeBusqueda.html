@@ -1,0 +1,41 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<h1>Resultado de la busqueda de tarea por nombre</h1>
+<h3>Busqueda: {{nombre_view}}</h3>
+<br />
+{% if nom_res %}
+<h3>Tarea encontrada !</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre del Tarea</th>
+      <th scope="col">Descripcion de la Tarea</th>
+      <th scope="col">Fecha de creacion de la Tarea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <h4>Tareas: {%for tarea in nom_res%}</h4>
+
+    <tr>
+      <th scope="row">{{ tarea.id }}</th>
+      <td>{{ tarea.nombre }}</td>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.fecha_de_creacion }}</td>
+    </tr>
+    <br />
+    {% endfor %}
+    </tbody>
+</table>
+ {% else %}
+    <h3>No existe una tarea con el nombre buscado!</h3>
+    {% endif %} 
+  </tbody>
+</table>
+<button
+  type="button"
+  onclick="location.href='/tarea/busquedanombretarea'"
+  class="btn btn-secondary m-1"
+>
+  Regresar
+</button>
+{% endblock %}

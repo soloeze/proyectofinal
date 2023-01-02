@@ -1,0 +1,36 @@
+{% extends 'AppCoder/padre.html' %} {% block contenidoQueCambia %}
+<h1>Detalle del contacto:</h1>
+<ul class="list-group">
+  <li class="list-group-item"><b>Nombre:</b> {{contacto.nombre}}</li>
+  <li class="list-group-item"><b>Correo:</b> {{contacto.correo}}</li>
+  {% if contacto.tipo_consulta == 0 %}
+  <li class="list-group-item"><b>Tipo de consulta: </b>Consulta</li>
+  {% elif contacto.tipo_consulta == 1 %}
+  <li class="list-group-item"><b>Tipo de consulta: </b>Reclamo</li>
+  {% elif contacto.tipo_consulta == 2 %}
+  <li class="list-group-item"><b>Tipo de consulta: </b>Sugerencia</li>
+  {% elif contacto.tipo_consulta == 3 %}
+  <li class="list-group-item"><b>Tipo de consulta: </b>Felicitaciones</li>
+  {% else %}
+  <li class="list-group-item"><b>Tipo de consulta: </b>No existe</li>
+  {% endif %}
+  <li class="list-group-item"><b>Mensaje: </b>{{contacto.mensaje}}</li>
+  {% if contacto.avisos == True %}
+  <li class="list-group-item"><b>Avisos: </b>Verdadero</li>
+  {% elif contacto.avisos == False %}
+  <li class="list-group-item"><b>Avisos: </b>Falso</li>
+  <!-- <li class="list-group-item"><b>Avisos: </b>{{contacto.avisos}}</li> -->
+  {% else %}
+  <li class="list-group-item"><b>Avisos: </b>No existe</li>
+  {% endif %}
+</ul>
+
+<button
+  type="button"
+  onclick="location.href='/contacto/list'"
+  class="btn btn-secondary m-1"
+>
+  Regresar
+</button>
+
+{% endblock %}
